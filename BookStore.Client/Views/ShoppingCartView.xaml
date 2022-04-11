@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="BookStore.Client.Views.ShoppingCartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookStore.Client.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="1280"
+             DataContext="{Binding Source={StaticResource Locator}, Path=ShoppingCart}">
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="istockphoto-480762174-612x612.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Shopping Cart:"
+                   Grid.Column="1"
+                   HorizontalAlignment="Center"
+                   FontWeight="Bold"
+                   TextDecorations="Underline"
+                   FontSize="25"
+                   FontFamily="Tw Cen MT" />
+        <TextBlock Text="Name" 
+                   Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontFamily="Tw Cen MT"
+                   FontSize="25"/>
+        <TextBlock Text="Price"
+                   Grid.Column="1"
+                   Grid.Row="1" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontFamily="Tw Cen MT"
+                   FontSize="25"/>
+        <TextBlock Text="Amount"
+                   Grid.Row="1" 
+                   Grid.Column="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" 
+                   FontFamily="Tw Cen MT" 
+                   FontSize="25"/>
+        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.ColumnSpan="3" Grid.Row="2" ItemsSource="{Binding AddedToCartProduct}" Background="#FFCBDFF7">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="320"/>
+                            <ColumnDefinition Width="320"/>
+                            <ColumnDefinition Width="320"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Product.Description}"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding Product.BasePrice}"
+                                   Grid.Column="1"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding Amount}"
+                                   Grid.Column="2"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Content="Buy Products" 
+                Grid.Column="4"
+                Grid.Row="2"
+                Width="150"
+                Height="30"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Command="{Binding BuyCommand}"
+                Background="#FF86B0CC" />
+        <Button Content="Go Back" 
+                Grid.Row="2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Command="{Binding GoBackCommand}"
+                Background="#FF86B0CC" />
+    </Grid>
+</UserControl>

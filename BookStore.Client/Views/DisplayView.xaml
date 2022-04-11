@@ -1,0 +1,156 @@
+﻿<UserControl x:Class="BookStore.Client.Views.DisplayView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"    
+             mc:Ignorable="d" 
+              d:DesignHeight="720" d:DesignWidth="1280"
+              DataContext="{Binding Source={StaticResource Locator}, Path=Display}">
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="istockphoto-480762174-612x612.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="215"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Name:" FontWeight="Bold" Foreground="#FFB8C9D9" />
+            <TextBlock Text="Price($):"
+                       Grid.Column="1" 
+                       FontWeight="Bold"
+                        Foreground="#FFB8C9D9"/>
+        </Grid>
+        <ListView Background="AliceBlue" BorderBrush="Black" BorderThickness="1" ItemsSource="{Binding ShowProuducts}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" SelectedItem="{Binding SelectedProuduct,Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="215"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Description}"/>
+                        <TextBlock Text="{Binding BasePrice}"
+                                   Grid.Column="1"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Type:" />
+            <ComboBox ItemsSource="{Binding TypeCollection}"
+                      SelectedItem="{Binding SelectedProuductType}"/>
+            <TextBlock Text="Genre:" 
+                       Grid.Row="1" />
+            <ComboBox ItemsSource="{Binding GenresList}"
+                      SelectedItem="{Binding SelectedGenreType}"/>
+        </StackPanel>
+        <TextBlock Text="Detalis:"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   Grid.Column="2"
+                   FontWeight="Bold"
+                    Foreground="#FFB8C9D9"/>
+        <Border Background="AliceBlue" BorderBrush="Black" BorderThickness="1" Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" Visibility="{Binding VisibilBookBorder}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="AuthorName: "/>
+                    <TextBlock Text="{Binding AuthorOrEditor}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="1">
+                    <TextBlock Grid.Row="1" 
+                               Text="Edition: "/>
+                    <TextBlock Grid.Row="1"
+                               Text="{Binding EditionOrIssueNumber}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+                            Grid.Row="2">
+                    <TextBlock Text="Publication Date: "/>
+                    <TextBlock Text="{Binding PublicationDateString}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="3">
+                    <TextBlock Text="Quantity: "/>
+                    <TextBlock Text="{Binding Quantity}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="4">
+                    <TextBlock Text="Genres: "/>
+                    <TextBlock Text="{Binding GenresString}"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            Grid.Row="5"
+                            VerticalAlignment="Top">
+                    <TextBlock Text="Synopsis: "/>
+                    <TextBlock Text="{Binding Synopsis}"
+                                TextWrapping="Wrap"
+                                FontSize="13" />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border Background="AliceBlue" BorderBrush="Black" BorderThickness="1" Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" Visibility="{Binding VisibilJournalBorder}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Editor: "/>
+                    <TextBlock Text="{Binding AuthorOrEditor}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="1">
+                    <TextBlock Grid.Row="1"
+                               Text="Issue Number: "/>
+                    <TextBlock Grid.Row="1"
+                               Text="{Binding EditionOrIssueNumber}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="2">
+                    <TextBlock Text="Publication Date: "/>
+                    <TextBlock Text="{Binding PublicationDateString}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="3">
+                    <TextBlock Text="Quantity: "/>
+                    <TextBlock Text="{Binding Quantity}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="4">
+                    <TextBlock Text="Genres: "/>
+                    <TextBlock Text="{Binding GenresString}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="5"
+                            VerticalAlignment="Top">
+                    <TextBlock Text="Frequency:"/>
+                    <TextBlock Text="{Binding Frequency}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

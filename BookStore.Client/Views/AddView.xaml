@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="BookStore.Client.Views.AddView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookStore.Client.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="1280"
+             DataContext="{Binding Source={StaticResource Locator}, Path=Add}">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="istockphoto-480762174-612x612.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Type:"  />
+        <ComboBox ItemsSource="{Binding TypeCollection}"
+                  SelectedItem="{Binding SelectedProuductType,Mode=TwoWay}" />
+        <Border Width="400" 
+                Background="AliceBlue"
+                Grid.Column="1"
+                Grid.RowSpan="4"
+                HorizontalAlignment="Center"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Visibility="{Binding VisibilBookBorder}" >
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top">
+                <TextBlock Text="Title:"/>
+                <TextBox Text="{Binding Description,Mode=TwoWay}"/>
+                <TextBlock Text="Author Name:"/>
+                <TextBox Text="{Binding AuthorName,Mode=TwoWay}"/>
+                <TextBlock Text="Price:"/>
+                <TextBox Text="{Binding BasePrice,Mode=TwoWay}"/>
+                <TextBlock Text="Edition:"/>
+                <TextBox Text="{Binding Edition,Mode=TwoWay}"/>
+                <TextBlock Text=" Publication Date:"/>
+                <DatePicker Height="40" 
+                            Text="{Binding PublicationDate}" 
+                            FontSize="17"/>
+                <TextBlock Text="Quantity:"/>
+                <TextBox Text="{Binding Quantity,Mode=TwoWay}"/>
+                <TextBlock Text="(*)Genres:"/>
+                <ComboBox x:Name="cb1"
+                          ItemsSource="{Binding FirstGenresList}"
+                          SelectedValue="{Binding SelectedGenre1,Mode=TwoWay}"
+                          IsEnabled="{Binding IsEnabledGenre}"
+                          SelectionChanged="ComboIsChanged"  />
+                <TextBlock Text=" Antoher Genres(2):"/>
+                <ComboBox x:Name="cb2"
+                          ItemsSource="{Binding SecondGenresList}"
+                          SelectedValue="{Binding SelectedGenre2,Mode=TwoWay}"
+                          IsEnabled="{Binding IsEnabledSecondGenre}"
+                          SelectionChanged="ComboIsChanged" />
+                <TextBlock Text=" Antoher Genres(3):"/>
+                <ComboBox x:Name="cb3"
+                          ItemsSource="{Binding ThirdGenresList}"
+                          SelectedValue="{Binding SelectedGenre3,Mode=TwoWay}"
+                          IsEnabled="{Binding IsEnabledThirdGenre}"
+                          SelectionChanged="ComboIsChanged"/>
+            </StackPanel>
+        </Border>
+        <Border Background="AliceBlue" Grid.Column="2" Grid.RowSpan="2" Width="400" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="1" Visibility="{Binding VisibilBookBorder}">
+            <StackPanel VerticalAlignment="Top">
+                <TextBlock Text="Synopsis" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Synopsis,Mode=TwoWay}" VerticalContentAlignment="Top" Width="400" Height="400" MinLines="15" TextWrapping="Wrap" FontSize="20" AcceptsReturn="True" SpellCheck.IsEnabled="True"/>
+            </StackPanel>
+        </Border>
+        <Border Background="AliceBlue" Width="400" Grid.Column="1" Grid.RowSpan="4" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="1" Visibility="{Binding VisibilJournalBorder}" >
+            <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Top">
+                <TextBlock Text="Title:"/>
+                <TextBox Text="{Binding Description,Mode=TwoWay}"/>
+                <TextBlock Text="Author Name:"/>
+                <TextBox Text="{Binding AuthorName,Mode=TwoWay}"/>
+                <TextBlock Text="Price:"/>
+                <TextBox Text="{Binding BasePrice,Mode=TwoWay}"/>
+                <TextBlock Text="Issue Number:"/>
+                <TextBox Text="{Binding IssueNumber,Mode=TwoWay}"/>
+                <TextBlock Text=" Publication Date:"/>
+                <DatePicker Height="30" Text="{Binding PublicationDate}" FontSize="17"/>
+                <TextBlock Text="Quantity:"/>
+                <TextBox Text="{Binding Quantity}"/>
+                <TextBlock Text="(*)Genres:"/>
+                <ComboBox x:Name="cb4" ItemsSource="{Binding FirstGenresList}" SelectedValue="{Binding SelectedGenre1,Mode=TwoWay}" IsEnabled="{Binding IsEnabledGenre}" SelectionChanged="ComboIsChanged2" />
+                <TextBlock Text=" Antoher Genres(2):"/>
+                <ComboBox x:Name="cb5" ItemsSource="{Binding SecondGenresList}" SelectedValue="{Binding SelectedGenre2,Mode=TwoWay}" IsEnabled="{Binding IsEnabledSecondGenre}" SelectionChanged="ComboIsChanged2"/>
+                <TextBlock Text=" Antoher Genres(3):"/>
+                <ComboBox x:Name="cb6" ItemsSource="{Binding ThirdGenresList}" SelectedValue="{Binding SelectedGenre3,Mode=TwoWay}" IsEnabled="{Binding IsEnabledThirdGenre}" SelectionChanged="ComboIsChanged2"/>
+                <TextBlock Text="Frequency:"/>
+                <ComboBox ItemsSource="{Binding JournalFrequencyList}" SelectedItem="{Binding Frequency,Mode=TwoWay}" />
+            </StackPanel>
+        </Border>
+        <Button Content="Go Back" 
+                Grid.Row="3"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Command="{Binding GoBackCommand}"/>
+        <Button Content="To Add "  
+                Grid.Row="3"
+                Grid.Column="2"
+                Width="100"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Command="{Binding AddCommand}"
+                IsEnabled="{Binding IsEnabledAddButton}"/>
+    </Grid>
+</UserControl>
