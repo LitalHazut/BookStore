@@ -6,5 +6,8 @@
 - Execution of orders by the customer, update of inventory and addition to inventory by the manager.
 - Save and load from a file.
 - Perform a UNIT TESTS.
-
-![image](https://user-images.githubusercontent.com/102611205/235341371-f3f8dbc1-5d0d-4ee9-bb39-2f5bcdb8d06a.png)
+ 
+ <p>In this app we have two interfaces - the first is a customer and the second is an manager.Each of them is responsible for different things.</p>
+ <p>The customer can place orders from the store. The manager can update inventory or add to the store's inventory.</p>
+ 
+<img width="932" alt="book store" src="https://user-images.githubusercontent.com/102611205/235341441-f7aa4abb-929b-4c90-8563-3750e1cea37f.png">
